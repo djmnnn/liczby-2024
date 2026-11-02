@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-    //fstream wejscie("liczby.txt");
-    fstream wejscie("liczby_przyklad.txt");
-    int we,tab1[3000],tab2[20],odp=0;
+    fstream wejscie("liczby.txt");
+    //fstream wejscie("liczby_przyklad.txt");
+    int we,tab1[3000],odp=0,tab2[20];
     for(int i=0;i<3000;i++)
     {
         wejscie>>we;
