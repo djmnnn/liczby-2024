@@ -1,33 +1,25 @@
 #include <iostream>
 #include <fstream>
-
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 int main()
 {
     fstream wejscie("liczby.txt");
     //fstream wejscie("liczby_przyklad.txt");
-    int we,tab1[3000],odp=0,tab2[20];
+    int we,maks=2001;
+    vector<int> tab;
+    vector<int> sord;
     for(int i=0;i<3000;i++)
     {
         wejscie>>we;
-        tab1[i]=we;
+        tab.push_back(we);
     }
-    for(int i=0;i<20;i++)
+    for(int i=0;i<2;i++)
     {
-        wejscie>>we;
-        tab2[i]=we;
+        sord.push_back(*max_element(tab.begin(),tab.end()));
+        tab.erase(max_element(tab.begin(),tab.end()));
     }
-    for(int i=0;i<3000;i++)
-    {
-        for(int j=0;j<20;j++)
-        {
-            if(tab2[j]%tab1[i]==0){
-                odp++;
-                break;
-            }
-
-        }
-    }
-    cout<<odp;
+    cout<<sord[1];
 }
