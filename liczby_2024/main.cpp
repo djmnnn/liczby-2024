@@ -16,10 +16,10 @@ int main()
         wejscie>>we;
         tab.push_back(we);
     }
-    for(int i=0;i<2;i++)
+    for(int i=0;i<101;i++)
     {
         sord.push_back(*max_element(tab.begin(),tab.end()));
         tab.erase(max_element(tab.begin(),tab.end()));
     }
-    cout<<sord[1];
+    cout<<sord[100];
 }
