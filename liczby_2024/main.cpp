@@ -3,35 +3,42 @@
 #include <vector>
 using namespace std;
 
+double average(vector<int> tablica,int i, double zakres)
+{
+    double suma=0;
+    for(;i<i+zakres;i++)//zly zakres bo sie ciagle zwieksza i loop nigdy nie zamyka
+    {
+        suma+=tablica[i];
+    }
+    double srednia=suma/zakres;
+    return srednia;
+}
 int main()
 {
     fstream wejscie("liczby.txt");
-    int we;
+    int we,maks_zakres,iteracja;
+    double maks=-1;
     vector<int> jeden;
-    vector<int> dwa;
-    for(int i=0;i<3020;i++)
+    for(int i=0;i<3000;i++)
     {
         wejscie>>we;
-        if(i<3000)
-            jeden.push_back(we);
-        else
-            dwa.push_back(we);
+        jeden.push_back(we);
         
     }
-    for(int i=0;i<20;i++)
+    
+    for(int i=0;i<3000-50;i++)//ostatni element nie jest uwzgledniany
     {
-        int tym=dwa[i];
-        for(int j=0;j<3000;j++)
+        for(int zakres=50;zakres+i<3000;zakres++)
         {
-            if(tym%jeden[j]==0)
+            if(average(jeden,i,zakres)>maks)
             {
-                tym/=jeden[j];
+                maks=average(jeden,i,zakres);//kod jest nie zoptymalizowany bo jest ponad 4bln addycji
+                maks_zakres=zakres;//wektor kopiowany za każdym razem
+                iteracja=i;//srednia jest dwa razy robiona
             }
         }
-        if(tym==1)
-        {
-            cout<<dwa[i]<<endl;
-        }
     }
+    cout<<maks<<" "<<maks_zakres<<" "<<iteracja;
+    
     
 }
