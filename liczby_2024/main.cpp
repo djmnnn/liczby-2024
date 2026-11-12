@@ -8,18 +8,33 @@ int main()
 {
     fstream wejscie("liczby.txt");
     //fstream wejscie("liczby_przyklad.txt");
-    int we,maks=2001;
-    vector<int> tab;
-    vector<int> sord;
+    int we;
+    vector<int> tab1;
+    vector<int> tab2;
     for(int i=0;i<3000;i++)
     {
         wejscie>>we;
-        tab.push_back(we);
+        tab1.push_back(we);
     }
-    for(int i=0;i<101;i++)
+    for(int i=0;i<20;i++)
     {
-        sord.push_back(*max_element(tab.begin(),tab.end()));
-        tab.erase(max_element(tab.begin(),tab.end()));
+        wejscie>>we;
+        tab2.push_back(we);
     }
-    cout<<sord[100];
+    for(int i=0;i<20;i++)
+    {
+        int tym=tab2[i];
+        for(int j=0;j<3000;j++)
+        {
+            if(tym%tab1[j]==0)
+            {
+                tym/=tab1[j];
+            }
+        }
+        if(tym==1)
+        {
+            cout<<tab2[i]<<endl;
+        }
+    }
+
 }
